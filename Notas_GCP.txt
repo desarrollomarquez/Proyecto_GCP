@@ -1,0 +1,158 @@
+https://www.twblogs.net/a/5d0f91c9bd9eee1ede04894f
+----------------------------------------------------------------------------------
+<html>
+<head><title> Welcome Diego Blog</title></head>
+<body>
+<h1> Welcome Diego Blog </h1>
+<?php
+
+$dbserver = "104.198.138.166";
+$dbuser = "blogdbuser";
+$dbpassword = "simplesimple";
+
+$conn = new mysqli($dbserver, $dbuser, $dbpassword);
+
+if(mysqli_connect_error()){
+echo ("Database connection failed: " .mysqli_connect_error());
+}
+else{
+echo ("Database connection succeeded" );
+}
+?>
+</body>
+</html>
+
+--------------------------------------------------------------------------------------------
+
+gcloud compute zones list | grep us-centrall
+
+
+-- Startup script (Optional) ---
+
+apt-get update
+apt-get install apache2 php php-mysql -y
+service apache2 restart
+
+
+-- contenedores ----
+
+export MY_ZONE=us-central1-f
+
+gcloud container clusters webfrontend --zone $MY_ZONE --num-nodes 2
+
+kubectl run nginx --image=nginx:1.10.0
+
+kubectl get pods
+
+kubectl expose deployment nginx --port 80 --type LoadBalancer
+
+kubectl get services
+
+kubectl scale deployment nginx --replicas 3
+
+
+
+
+34.68.61.127
+<img src='https://storage.googleapis.com/qwiklabs-gcp-00-40f7d5ea2d9d/my-excellent-blog.png'>
+
+<html>
+<head><title>Welcome to my excellent blog</title></head>
+<body>
+<h1>Welcome to my excellent blog</h1>
+<?php
+ $dbserver = "34.68.61.127";
+$dbuser = "blogdbuser";
+$dbpassword = "simplesimple";
+// In a production blog, we would not store the MySQL
+// password in the document root. Instead, we would store it in a
+// configuration file elsewhere on the web server VM instance.
+
+$conn = new mysqli($dbserver, $dbuser, $dbpassword);
+
+if (mysqli_connect_error()) {
+        echo ("Database connection failed: " . mysqli_connect_error());
+} else {
+        echo ("Database connection succeeded.");
+}
+?>
+</body></html>
+
+
+
+
+git clone https://github.com/GoogleCloudPlatform/appengine-guestbook-python
+
+cd appengine-guestbook-python/
+
+cat app.yaml
+
+dev_appserver.py ./app.yaml
+
+gcloud app deploy ./index.yaml ./app.yaml
+
+gsutil mb -l US gs://$DEVSHELL_PROJECT_ID
+
+
+gsutil ls gs://$DEVSHELL_PROJECT_ID
+
+resources:
+- name: diego-vm
+  type: compute.v1.instance
+  properties:
+     zone: us-central1-f
+     machineType: zones/us-central1-f/machineTypes/n1-standard-1
+     metadata:
+      items:
+      - key: startup-script
+        value: "apt-get update"
+     disks:
+     - deviceName: boot
+       type: PERSISTENT
+       boot: true
+       autoDelete: true
+       initializeParams:
+         sourceImage: https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v201709$
+     networkInterfaces:
+     - network: https://www.googleapis.com/compute/v1/projects/PROJECT_ID/global/networks/default
+	   accessConfigs:
+	   - name: External NAT
+	     type: ONE_TO_ONE_NAT
+
+rm  mydeploy.yaml
+
+
+export MY_ZONE=us-central1-f
+	 
+sed -i -e 's/PROJECT_ID/'$DEVSHELL_PROJECT_ID/ mydeploy.yaml
+
+sed -i -e 's/ZONE/'$MY_ZONE/  mydeploy.yaml
+
+gcloud deployment-manager deployments create my-first-depl \
+
+--config mydeploy.yaml
+
+
+gcloud deployment-manager deployments list
+
+apt-get install nginx-light -y
+
+
+gcloud deployment-manager deployments update my-first-depl \
+
+
+dd if=/dev/urandom | gzip =9 >> /dev/null &
+
+
+
+
+
+
+
+gs://cloud-training/gcpfci/access_log.csv
+
+bq query "SELECT int64_field_6 as hour, count(*) as hitcount FROM logdata.accesslog GROUP BY hour ORDER BY hour DESC"
+
+
+
+
