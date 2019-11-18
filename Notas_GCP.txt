@@ -38,6 +38,41 @@ service apache2 restart
 
 export MY_ZONE=us-central1-f
 
+----------------------------------------------------------------------------------------------
+
+gsutil mb gs://<diego2bk>
+
+gsutil cp image001.png gs://diego2b
+
+
+us-central1
+
+
+INFRACLASS_REGION=us-central1
+ 
+INFRACLASS_PROJECT_ID=$DEVSHELL_PROJECT_ID
+
+
+sudo /opt/bitnami/ctlscript.sh stop
+
+
+sudo /opt/bitnami/ctlscript.sh restart
+
+
+
+ping -c 3 10.132.0.2
+ping -c 3 10.128.0.2
+
+gcloud compute --project=qwiklabs-gcp-00-77f8138e590d networks create privatenet  --subnet-mode=custom
+
+gcloud compute --project=qwiklabs-gcp-00-77f8138e590d networks subnets create privatesubnet-us --network=privatenet --region=us-central1 --range=172.16.0.0/24
+
+gcloud compute --project=qwiklabs-gcp-00-77f8138e590d networks subnets create privatesubnet-eu --network=privatenet --region=europe-west1 --range=172.20.0.0/20
+
+
+gcloud compute --project=qwiklabs-gcp-00-77f8138e590d firewall-rules create privatenet-allow-icmp-ssh-rdp --direction=INGRESS --priority=1000 --network=privatenet --action=ALLOW --rules=tcp:22,tcp:3389,icmp --source-ranges=0.0.0.0/0
+
+
 gcloud container clusters webfrontend --zone $MY_ZONE --num-nodes 2
 
 kubectl run nginx --image=nginx:1.10.0
