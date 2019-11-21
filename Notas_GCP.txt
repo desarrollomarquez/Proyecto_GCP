@@ -189,5 +189,46 @@ gs://cloud-training/gcpfci/access_log.csv
 bq query "SELECT int64_field_6 as hour, count(*) as hitcount FROM logdata.accesslog GROUP BY hour ORDER BY hour DESC"
 
 
+sudo mount -o discard,defaults /dev/disk/by-id/google-minecraftdisk /home/minecraft
+
+export YOUR_BUCKET_NAME=qwiklabs-gcp-00-70dea90330f6
+
+
+export SQL_CONNECTION=qwiklabs-gcp-00-596404988b65:us-central1:wordpress-db
+
+
+SELECT
+  product,
+  resource_type,
+  start_time,
+  end_time,
+  cost,
+  project_id,
+  project_name,
+  project_labels_key,
+  currency,
+  currency_conversion_rate,
+  usage_amount,
+  usage_unit
+FROM
+  `cloud-training-prod-bucket.arch_infra.billing_data`
+  
+  
+export BUCKET_NAME_1=qwiklabs-gcp-00-a6b9be7d108a
+
+
+shmRhnGCCziio4iHNx0F3TiGTzZSNH5CbmbKMeCUrEc
+
+Before:
+# encryption_key=
+
+After:
+shmRhnGCCziio4iHNx0F3TiGTzZSNH5CbmbKMeCUrEc=
+
+
+
+export BUCKET_NAME_2=myproj-qwiklabs-gcp-00-a6b9be7d108a
+
+
 
 
