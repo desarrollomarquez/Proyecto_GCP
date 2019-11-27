@@ -462,3 +462,7 @@ if pkg=$(curl -sf "${ATTR}/echo" -H "Metadata-Flavor: Google"); then
 fi
 	
 
+MY_BUCKET=package_python2
+ 
+gsutil -h 'Content-Type: application/gzip' -h 'Cache-Control:private' cp -a public-read echo-0.0.1.tar.gz gs://$MY_BUCKET
+
