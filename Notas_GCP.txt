@@ -466,3 +466,24 @@ MY_BUCKET=package_python2
  
 gsutil -h 'Content-Type: application/gzip' -h 'Cache-Control:private' cp -a public-read echo-0.0.1.tar.gz gs://$MY_BUCKET
 
+us-central1-a
+europe-north1-a
+
+
+#!/bin/bash
+for ((c=1; c<=250; c++))
+do
+   echo "$c"
+   curl -s "http://34.102.255.24:8080/"
+done
+
+# Apache Bench en Cloud Shell
+
+cd
+sudo apt-get update
+sudo apt-get -y install apache2-utils
+
+Pruebas: 
+
+ab -c100 -n10000 http://34.102.255.24:8080/?msg=enter-a-message/
+
